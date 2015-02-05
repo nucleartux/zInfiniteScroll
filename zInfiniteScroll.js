@@ -1,13 +1,13 @@
 (function (ng) {
     'use strict';
-    var module = ng.module('lrInfiniteScroll', []);
+    var module = ng.module('zInfiniteScroll', []);
 
-    module.directive('lrInfiniteScroll', ['$timeout', '$document', function ($timeout, $document) {
+    module.directive('zInfiniteScroll', ['$timeout', '$document', function ($timeout, $document) {
         return{
             link: function ($scope, $element, $attr) {
                 var lengthThreshold = $attr.scrollThreshold || 50,
-                    timeThreshold   = $attr.timeThreshold || 400,
-                    handler         = $scope.$eval($attr.lrInfiniteScroll),
+                    timeThreshold   = $attr.timeThreshold || 200,
+                    handler         = $scope.$eval($attr.zInfiniteScroll),
                     bodyScroll      = $scope.$eval($attr.bodyScroll) === true ? true : false,
                     inverse         = $scope.$eval($attr.inverse) === true ? true : false,
                     promise         = null,
@@ -24,7 +24,7 @@
                 }
 
                 // -1 means your callback function decide when to scroll
-                if (timeThreshold === -1) {
+                if (inverse) {
                     scrollEvent = scrollUntilDataReady;
                 } else {
                     scrollEvent = scrollUntilTimeout;

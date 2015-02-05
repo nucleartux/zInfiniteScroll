@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+    <script data-require="angular.js@1.3.0" data-semver="1.3.0" src="//code.angularjs.org/1.3.0/angular.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <script src="zInfiniteScroll.js"></script>
+  </head>
+  <body ng-controller="mainCtrl">
+    <span ng-show="false">loading...</span>
+<!--     <div class="limit" z-infinite-scroll="loadMore">
+  <div ng-repeat="message in messages">
+    {{message | json}}
+  </div>
+</div> -->
+<!--     <div class="limit" z-infinite-scroll="loadOlder" inverse="true">
+  <div ng-repeat="message in messages">
+    {{message | json}}
+  </div>
+</div> -->
+
+<!--     <div z-infinite-scroll="loadMore" body-scroll="true">
+  <div ng-repeat="message in messages">
+    {{message | json}}
+  </div>
+</div>
+ -->
+<div z-infinite-scroll="loadOlder" inverse="true" body-scroll="true">
+  <div ng-repeat="message in messages">
+    {{message | json}}
+  </div>
+</div>
+  </body>
+  
+</html>

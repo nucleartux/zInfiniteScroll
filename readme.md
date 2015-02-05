@@ -1,10 +1,8 @@
-# lrInfiniteScroll
+# zInfiniteScroll
 
 It is a module for [AngularJS](http://angularjs.org/) which allow you to attach an event handler to the element when this element
 has been scrolled almost to its bottom. In most of the case it will be used for infinite scrolling.
-It is very light (about 45 lines of code) and optimized to reduce the amount of $digest loop.
-
-See the [example section](http://lorenzofox3.github.io/lrInfiniteScroll/index.html#example)
+It is very light and optimized to reduce the amount of $digest loop.
 
 ## Attach an event handler
 
@@ -41,7 +39,7 @@ no other event is detected within 400ms, then the handler is called. You can ove
 
 lrInfinite scroll module is under MIT license:
 
-> Copyright (C) 2013 Laurent Renard.
+> Copyright (C) 2015 Zam Huang.
 >
 > Permission is hereby granted, free of charge, to any person
 > obtaining a copy of this software and associated documentation files

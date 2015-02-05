@@ -1,16 +1,17 @@
 {
-  "name": "lrInfiniteScroll",
-  "main": "lrInfiniteScroll.js",
-  "version": "1.0.0",
-  "homepage": "https://github.com/lorenzofox3/lrInfiniteScroll",
+  "name": "zInfiniteScroll",
+  "main": "zInfiniteScroll.js",
+  "version": "1.1.0",
+  "homepage": "https://github.com/LightZam/zInfiniteScroll",
   "authors": [
-    "lorenzofox3 <laurent34azerty@gmail.com>"
+    "Zam Huang <love8879201@gmail.com>"
   ],
   "description": "angular directive to handle element scroll",
   "keywords": [
     "angular",
     "scroll",
-    "inifinite"
+    "infinite",
+    "inverse"
   ],
   "license": "MIT",
   "ignore": [

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="zInfiniteScrollApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
+    <script src="../zInfiniteScroll.js"></script>
+    <style>
+		.limit {
+            height: 300px;
+            overflow-y: auto;
+            background: rgb(49, 49, 49);
+            color: #AAA;
+        }
+    </style>
+</head>
+<body ng-controller="mainCtrl">
+    <span ng-show="false">loading...</span>
+    <div class="limit" z-infinite-scroll="loadMore">
+        <div ng-repeat="obj in messages">
+            {{obj.id}} - {{obj.author}} : {{obj.message}}
+        </div>
+    </div>
+    <script>
+        angular.module('zInfiniteScrollApp', ['zInfiniteScroll'])
+        .controller('mainCtrl', ['$scope', '$timeout', '$q', function($scope, $timeout, $q) {
+          
+            var id = 0;
+            var authors = ['Zam','Woody','Greydo'];
+            var messages = ['hi', 'hello', 'hey'];
+
+            $scope.messages = loadDatas(100);
+            $scope.isLoading = false;
+
+            function randomData(id) {
+                return {
+                    id : id,
+                    author : authors[Math.floor(Math.random() * 2) + 1],
+                    message : messages[Math.floor(Math.random() * 2) + 1]
+                }
+            }
+
+            function loadDatas(n) {
+                var data = [];
+                n = n || 20;
+                for (var i = 0; i < n; i++) {
+                    data.push(randomData(++id));
+                }
+                return data;
+            }
+
+            $scope.loadMore = function() {
+                if (!$scope.isLoading) {
+                    $scope.isLoading = true;
+                    $timeout(function() {
+                        $scope.messages.push.apply($scope.messages, loadDatas());
+                        $scope.isLoading = false;
+                    }, 1000);
+                }
+            }
+        }]);
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
     var module = ng.module('zInfiniteScroll', []);
 
     module.directive('zInfiniteScroll', ['$timeout', '$document', function ($timeout, $document) {
-        return{
+        return {
             link: function ($scope, $element, $attr) {
                 var lengthThreshold = $attr.scrollThreshold || 50,
                     timeThreshold   = $attr.timeThreshold || 200,
@@ -46,6 +46,7 @@
                 // it will be scrolled once your data loaded
                 function scrollUntilDataReady() {
                     var scrolled = inverse ? element.scrollTop : element.scrollHeight - (element.clientHeight + element.scrollTop);
+
                     // if we have reached the threshold and we scroll up
                     if (scrolled < lengthThreshold && (scrolled - lastScrolled) < 0) {
                         var originalHeight = element.scrollHeight;

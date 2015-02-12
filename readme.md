@@ -9,7 +9,27 @@ It is very light and optimized to reduce the amount of $digest loop.
 simply set as attribute a function accessible within the $scope
 
 ```html
-<ul lr-infinite-scroll="myEventHandler">
+<ul z-infinite-scroll="myEventHandler">
+    <li ng-repeat="item in myCollection">
+</ul>
+```
+
+## use infinite scroll without set height on your element
+
+use the body as scroll target
+
+```html
+<ul z-infinite-scroll="myEventHandler" body-scroll="true">
+    <li ng-repeat="item in myCollection">
+</ul>
+```
+
+## scroll to top
+
+scroll to up and load your data by myEventHandler when it scrolled almost to its top
+
+```html
+<ul z-infinite-scroll="myEventHandler" inverse="true">
     <li ng-repeat="item in myCollection">
 </ul>
 ```
@@ -20,7 +40,7 @@ By default the handler will be called when the user is scrolling *down* and only
 of the element. You can overwrite the 50px by setting the attribute *scroll-threshold*
 
 ```html
-<ul lr-infinite-scroll="myEventHandler" scroll-threshold="200">
+<ul z-infinite-scroll="myEventHandler" scroll-threshold="200">
     <li ng-repeat="item in myCollection">
 </ul>
 ```
@@ -30,7 +50,7 @@ To reduce the amount of $digest loop, instead of calling the handler whenever a 
 no other event is detected within 400ms, then the handler is called. You can overwrite the time value by setting the *time-threshold* attribute.
 
 ```html
-<ul lr-infinite-scroll="myEventHandler" scroll-threshold="200" time-threshold="600">
+<ul z-infinite-scroll="myEventHandler" scroll-threshold="200" time-threshold="600">
     <li ng-repeat="item in myCollection">
 </ul>
 ```

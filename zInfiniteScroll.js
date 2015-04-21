@@ -13,7 +13,12 @@
                     promise         = null,
                     lastScrolled    = 9999,
                     element         = $element[0],
-                    scrollEvent;
+                    scrollEvent,
+                    isDestorying = false;
+
+                $scope.$on('$destroy', function handleDestroyEvent() {
+                    isDestorying = true;
+                });
 
                 lengthThreshold = parseInt(lengthThreshold, 10);
                 timeThreshold = parseInt(timeThreshold, 10);
@@ -45,6 +50,7 @@
 
                 // it will be scrolled once your data loaded
                 function scrollUntilDataReady() {
+                    if (isDestorying) return;
                     var scrolled = inverse ? element.scrollTop : element.scrollHeight - (element.clientHeight + element.scrollTop);
 
                     // if we have reached the threshold and we scroll up
@@ -61,6 +67,7 @@
 
                 // this need you set the div height
                 function scrollUntilTimeout() {
+                    if (isDestorying) return;
                     var scrolled = inverse ? element.scrollTop : element.scrollHeight - (element.clientHeight + element.scrollTop);
 
                     // if we have reached the threshold and we scroll down

@@ -4,6 +4,15 @@ It is a module for [AngularJS](http://angularjs.org/) which allow you to attach 
 has been scrolled almost to its bottom. In most of the case it will be used for infinite scrolling.
 It is very light and optimized to reduce the amount of $digest loop.
 
+## Demo
+[Body scroll down](http://lightzam.github.io/zInfiniteScroll/example01_bodyScroll.html)
+
+[Body scroll up](http://lightzam.github.io/zInfiniteScroll/example02_bodyScroll_inverse.html)
+
+[Normal scroll down](http://lightzam.github.io/zInfiniteScroll/example03_normalScroll.html)
+
+[Normal scroll up](http://lightzam.github.io/zInfiniteScroll/example04_normalScroll_inverse.html)
+
 ## Attach an event handler
 
 simply set as attribute a function accessible within the $scope

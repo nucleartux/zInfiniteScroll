@@ -38,7 +38,7 @@
                 // if element doesn't want to set height, this would be helpful.
                 if (bodyScroll) {
                     $document.bind('scroll', scrollEvent);
-                    element = $document[0].body;
+                    element = $document[0].documentElement;
                 } else {
                     $element.bind('scroll', scrollEvent);
                 }
@@ -51,7 +51,8 @@
                 // it will be scrolled once your data loaded
                 function scrollUntilDataReady() {
                     if (isDestorying) return;
-                    var scrolled = inverse ? element.scrollTop : element.scrollHeight - (element.clientHeight + element.scrollTop);
+
+                    var scrolled = calculateBarScrolled();
 
                     // if we have reached the threshold and we scroll up
                     if (scrolled < lengthThreshold && (scrolled - lastScrolled) < 0) {
@@ -65,10 +66,9 @@
                     lastScrolled = scrolled;
                 }
 
-                // this need you set the div height
                 function scrollUntilTimeout() {
                     if (isDestorying) return;
-                    var scrolled = inverse ? element.scrollTop : element.scrollHeight - (element.clientHeight + element.scrollTop);
+                    var scrolled = calculateBarScrolled();
 
                     // if we have reached the threshold and we scroll down
                     if (scrolled < lengthThreshold && (scrolled - lastScrolled) < 0) {
@@ -82,6 +82,18 @@
                         }, timeThreshold);
                     }
                     lastScrolled = scrolled;
+                }
+
+                // for compatibility for all browser
+                function calculateBarScrolled() {
+                    var scrollTop;
+                    if (bodyScroll) {
+                        scrollTop = $document[0].documentElement.scrollTop || $document[0].body.scrollTop;
+                    } else {
+                        scrollTop = element.scrollTop;
+                    }
+
+                    return inverse ? scrollTop : element.scrollHeight - (element.clientHeight + scrollTop);
                 }
             }
         };

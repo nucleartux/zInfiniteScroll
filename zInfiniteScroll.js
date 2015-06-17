@@ -4,7 +4,8 @@
 
     module.directive('zInfiniteScroll', ['$timeout', '$document', function ($timeout, $document) {
         return {
-            link: function ($scope, $element, $attr) {
+            restrict: 'A',
+            link: function link($scope, $element, $attr) {
                 var lengthThreshold = $attr.scrollThreshold || 50,
                     timeThreshold   = $attr.timeThreshold || 200,
                     handler         = $scope.$eval($attr.zInfiniteScroll),
@@ -18,6 +19,7 @@
 
                 $scope.$on('$destroy', function handleDestroyEvent() {
                     isDestorying = true;
+                    $document.off('scroll', scrollEvent);
                 });
 
                 lengthThreshold = parseInt(lengthThreshold, 10);
@@ -37,25 +39,19 @@
 
                 // if element doesn't want to set height, this would be helpful.
                 if (bodyScroll) {
-                    $document.bind('scroll', scrollEvent);
+                    $document.on('scroll', scrollEvent);
                     element = $document[0].documentElement;
                 } else {
-                    $element.bind('scroll', scrollEvent);
+                    $element.on('scroll', scrollEvent);
                 }
-                
-                // scroll first to the bottom (with a delay so the elements are rendered)
-                $timeout(function() {
-                    element.scrollTop = element.clientHeight;
-                }, 0);
 
                 // it will be scrolled once your data loaded
                 function scrollUntilDataReady() {
                     if (isDestorying) return;
 
                     var scrolled = calculateBarScrolled();
-
                     // if we have reached the threshold and we scroll up
-                    if (scrolled < lengthThreshold && (scrolled - lastScrolled) < 0) {
+                    if (scrolled < lengthThreshold && (scrolled - lastScrolled) < 0 && (element.scrollHeight >= element.clientHeight)) {
                         var originalHeight = element.scrollHeight;
                         $scope.$apply(handler).then(function() {
                             $timeout(function() {
@@ -71,7 +67,7 @@
                     var scrolled = calculateBarScrolled();
 
                     // if we have reached the threshold and we scroll down
-                    if (scrolled < lengthThreshold && (scrolled - lastScrolled) < 0) {
+                    if (scrolled < lengthThreshold && (scrolled - lastScrolled) < 0 && (element.scrollHeight >= element.clientHeight)) {
                         // if there is already a timer running which has no expired yet we have to cancel it and restart the timer
                         if (promise !== null) {
                             $timeout.cancel(promise);
@@ -92,7 +88,6 @@
                     } else {
                         scrollTop = element.scrollTop;
                     }
-
                     return inverse ? scrollTop : element.scrollHeight - (element.clientHeight + scrollTop);
                 }
             }

@@ -4,6 +4,8 @@ It is a module for [AngularJS](http://angularjs.org/) which allow you to attach 
 has been scrolled almost to its bottom. In most of the case it will be used for infinite scrolling.
 It is very light and optimized to reduce the amount of $digest loop.
 
+zInfiniteScroll was forked from lrInfiniteScroll, but more functionality and browser compatibility even on mobile.
+
 ## Demo
 [Body scroll down](http://lightzam.github.io/zInfiniteScroll/example01_bodyScroll.html)
 

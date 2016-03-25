@@ -1,0 +1,25 @@
+{
+  "name": "zInfiniteScroll",
+  "version": "1.1.2",
+  "description": "It is a module for AngularJS which allow you to attach an event handler to the element when this element has been scrolled almost to its bottom. In most of the case it will be used for infinite scrolling. It is very light and optimized to reduce the amount of $digest loop.",
+  "main": "zInfiniteScroll.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/LightZam/zInfiniteScroll.git"
+  },
+  "keywords": [
+    "angular",
+    "scroll",
+    "infinite",
+    "inverse"
+  ],
+  "author": "LightZam <love8879201@gmail.com> (http://techaride.blogspot.tw/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LightZam/zInfiniteScroll/issues"
+  },
+  "homepage": "https://github.com/LightZam/zInfiniteScroll",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+  }
+}

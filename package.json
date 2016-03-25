@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/LightZam/zInfiniteScroll",
   "devDependencies": {
-    "grunt": "^0.4.5",
+    "grunt": "^0.4.5"
   }
 }
